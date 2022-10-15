@@ -61,7 +61,7 @@ void turn_on()
 // 设置电源状态为开启
 void awaking()
 {
-  digitalWrite(LED_BUILTIN, LOW);                              //LED开
+  digitalWrite(LED_BUILTIN, HIGH);                              //LED开
   power_status="电脑开着";
   btn_color="#FF0000";                                         //设置app按键是红色
   btn_text="点击关机";
@@ -83,7 +83,7 @@ void turn_off()
 // 设置电源状态为关闭
 void closed()
 {
-  digitalWrite(LED_BUILTIN, HIGH);                             //LED关
+  digitalWrite(LED_BUILTIN, LOW);                             //LED关
   power_status="电脑关了";
   btn_color="#00BB00";                                         //设置app按键是绿色
   btn_text="点击开机";
@@ -194,6 +194,7 @@ void setup()
   // 初始化blinker
   Blinker.begin(auth, ssid, pswd);                             //连接 wifi，连接点灯服务器
   Button1.attach(button1_callback);                            //初始化按钮事件
+  pinMode(LED_BUILTIN, OUTPUT);                                //我的设备要加上这句，指示LED才能工作
 
   //回调函数，用于反馈该控制状态
   BlinkerMIOT.attachPowerState(miotPowerState);                //小爱同学电源类操作回调函数
